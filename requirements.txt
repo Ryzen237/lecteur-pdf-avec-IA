@@ -1,0 +1,22 @@
+# Lecteur PE - Requirements
+# Ce projet utilise uniquement les modules Python standard
+# Aucune dépendance externe n'est requise
+
+# Modules utilisés (tous inclus dans Python standard) :
+# - struct : pour le parsing binaire
+# - sys : pour les arguments système
+# - os : pour les opérations fichier
+# - datetime : pour la conversion des timestamps
+# - typing : pour les annotations de type
+# - argparse : pour les arguments en ligne de commande
+# - tkinter : pour l'interface graphique (inclus dans la plupart des distributions Python)
+# - threading : pour l'exécution en arrière-plan
+# - io : pour la capture de sortie
+
+# Si tkinter n'est pas disponible sur votre système Linux :
+# Ubuntu/Debian: sudo apt-get install python3-tk
+# CentOS/RHEL: sudo yum install tkinter
+# Fedora: sudo dnf install python3-tkinter
+
+# Version Python minimale recommandée
+python>=3.6
