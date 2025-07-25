@@ -1,0 +1,187 @@
+/* Styles pour le composant PDFToAudioConverter */
+
+.converter-container {
+  max-width: 800px;
+  width: 100%;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Section d'upload */
+.upload-section {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.welcome-message {
+  margin-bottom: 2rem;
+}
+
+.welcome-message h2 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.welcome-message p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.features-list li {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #495057;
+  font-weight: 500;
+  border-left: 4px solid #667eea;
+}
+
+/* Messages d'erreur */
+.error-message {
+  background: #fee;
+  border: 2px solid #fcc;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #c33;
+  animation: slideIn 0.3s ease-out;
+}
+
+.error-icon {
+  font-size: 1.2rem;
+}
+
+.close-error {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #c33;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-error:hover {
+  background-color: rgba(204, 51, 51, 0.1);
+}
+
+/* Conteneur d'erreur de connexion */
+.error-container {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.error-container .error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.error-container h2 {
+  color: #e74c3c;
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+}
+
+.error-container p {
+  color: #7f8c8d;
+  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+}
+
+.error-actions {
+  margin-bottom: 2rem;
+}
+
+.retry-button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.help-text {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.help-text p {
+  margin: 0 0 0.5rem 0;
+  color: #495057;
+  font-weight: 600;
+}
+
+.help-text code {
+  background: #e9ecef;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  color: #495057;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .converter-container {
+    margin: 0 1rem;
+  }
+  
+  .upload-section,
+  .error-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .welcome-message h2 {
+    font-size: 1.5rem;
+  }
+  
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .help-text code {
+    font-size: 0.8rem;
+    word-break: break-all;
+  }
+}
