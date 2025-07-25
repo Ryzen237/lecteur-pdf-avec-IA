@@ -1,108 +1,171 @@
 # 📖🔊 PDF Reader AI
 
-Un outil intelligent qui convertit vos fichiers PDF en audio avec une voix IA naturelle et humaine.
+Une application moderne qui convertit vos fichiers PDF en audio avec une voix IA naturelle et humaine.
+
+## 🏗️ Architecture
+
+- **Frontend**: React.js avec TypeScript
+- **Backend**: FastAPI (Python)
+- **IA**: OpenAI TTS (Text-to-Speech)
+- **Extraction PDF**: PyPDF2
 
 ## ✨ Fonctionnalités
 
-- **📄 Extraction de texte PDF** : Capture automatiquement le contenu de toutes les pages
-- **🎤 Synthèse vocale IA** : Utilise l'API OpenAI pour générer une voix naturelle
-- **🎵 Choix de voix** : 6 voix différentes disponibles (masculine, féminine, neutre, etc.)
-- **🔊 Lecteur intégré** : Écoutez directement dans l'interface web
-- **💾 Téléchargement MP3** : Sauvegardez l'audio pour une écoute hors ligne
-- **📊 Statistiques** : Analyse du contenu (pages, mots, temps estimé)
-- **🎨 Interface moderne** : Interface utilisateur intuitive et responsive
+- **📄 Upload de PDF** : Glissez-déposez ou sélectionnez vos fichiers PDF
+- **🎤 6 Voix IA** : Choisissez parmi 6 voix naturelles différentes
+- **🔄 Traitement temps réel** : Conversion instantanée PDF vers audio
+- **🎧 Lecteur intégré** : Écoutez directement dans l'interface
+- **💾 Téléchargement** : Sauvegardez l'audio en MP3
+- **📊 Statistiques** : Informations sur le document traité
+- **🎨 Interface moderne** : Design responsive et intuitif
 
-## 🚀 Installation
+## 🚀 Installation Rapide
 
-1. **Cloner le projet** :
+### Prérequis
+- Python 3.8+
+- Node.js 16+
+- npm ou yarn
+- Clé API OpenAI
+
+### 1. Cloner le projet
 ```bash
 git clone <votre-repo>
 cd pdf-reader-ai
 ```
 
-2. **Installer les dépendances** :
+### 2. Configuration de la clé API
 ```bash
-pip install -r requirements.txt
+# Éditez le fichier backend/.env
+nano backend/.env
+
+# Ajoutez votre clé OpenAI
+OPENAI_API_KEY=sk-your-actual-openai-api-key-here
 ```
 
-3. **Configuration de l'API** :
-   - Copiez `.env.example` vers `.env`
-   - Ajoutez votre clé API OpenAI dans le fichier `.env`
-   - Ou configurez-la directement dans l'interface
-
-## 🎯 Utilisation
-
-1. **Lancer l'application** :
+### 3. Lancement automatique
 ```bash
-streamlit run app.py
+./start_app.sh
 ```
 
-2. **Utiliser l'outil** :
-   - Uploadez votre fichier PDF
-   - Configurez votre clé API OpenAI (si pas déjà fait)
-   - Choisissez une voix
-   - Cliquez sur "Convertir en Audio"
-   - Écoutez le résultat !
+L'application sera disponible sur :
+- **Frontend** : http://localhost:3000
+- **API Backend** : http://localhost:8000
 
-## 🎭 Voix disponibles
+## 🛠️ Installation Manuelle
 
-- **Alloy** : Voix neutre et équilibrée
-- **Echo** : Voix masculine claire
-- **Fable** : Accent britannique distingué
-- **Onyx** : Voix profonde et autoritaire
-- **Nova** : Voix féminine douce
-- **Shimmer** : Voix très douce et apaisante
+### Backend (FastAPI)
+```bash
+cd backend
+pip3 install --break-system-packages -r requirements.txt
+python3 main.py
+```
 
-## 📋 Prérequis
+### Frontend (React)
+```bash
+cd frontend
+npm install
+npm start
+```
 
-- Python 3.8+
-- Clé API OpenAI (pour la synthèse vocale)
-- Connexion Internet
+## 📋 API Endpoints
 
-## 🛠️ Technologies utilisées
+### `POST /upload-pdf/`
+Upload et conversion d'un PDF en audio
+- **Paramètres** : 
+  - `file` : Fichier PDF
+  - `voice` : ID de la voix (alloy, echo, fable, onyx, nova, shimmer)
+- **Réponse** : Informations sur le fichier audio généré
 
-- **Streamlit** : Interface web interactive
-- **PyPDF2** : Extraction de texte PDF
-- **OpenAI API** : Synthèse vocale de haute qualité
-- **Python** : Logique métier
+### `GET /audio/{filename}`
+Récupération d'un fichier audio
+- **Paramètres** : `filename` - Nom du fichier audio
+- **Réponse** : Fichier MP3
 
-## 💡 Conseils d'utilisation
+### `GET /voices/`
+Liste des voix disponibles
+- **Réponse** : Liste des voix avec descriptions
 
-- **Qualité PDF** : Les PDFs avec du texte sélectionnable donnent de meilleurs résultats
-- **Taille** : Les fichiers volumineux peuvent prendre plus de temps à traiter
-- **Coût** : L'API OpenAI facture selon l'usage (environ $15 pour 1M de caractères)
-- **Limites** : Le texte est limité à 4000 caractères par requête pour optimiser les performances
+## 🎤 Voix Disponibles
 
-## 🔧 Dépannage
+| Voix | Description |
+|------|-------------|
+| **Alloy** | Voix neutre et équilibrée |
+| **Echo** | Voix masculine profonde |
+| **Fable** | Voix expressive britannique |
+| **Onyx** | Voix masculine grave |
+| **Nova** | Voix féminine jeune |
+| **Shimmer** | Voix féminine douce |
 
-### Erreur d'extraction PDF
-- Vérifiez que le PDF contient du texte sélectionnable
-- Essayez avec un autre fichier PDF
+## 🔧 Configuration
 
-### Erreur API OpenAI
-- Vérifiez que votre clé API est valide
-- Assurez-vous d'avoir des crédits disponibles
-- Vérifiez votre connexion Internet
+### Variables d'environnement (backend/.env)
+```env
+OPENAI_API_KEY=sk-your-openai-api-key-here
+```
 
-### Performance lente
-- Les gros fichiers prennent plus de temps
-- L'API peut être plus lente aux heures de pointe
+### Limites
+- Taille maximale PDF : 200 MB
+- Longueur de texte : 4000 caractères (limitation OpenAI TTS)
+- Formats supportés : PDF uniquement
+
+## 📁 Structure du Projet
+
+```
+pdf-reader-ai/
+├── backend/
+│   ├── main.py              # API FastAPI
+│   ├── requirements.txt     # Dépendances Python
+│   ├── .env                 # Configuration
+│   ├── audio_files/         # Fichiers audio générés
+│   └── start_backend.sh     # Script de lancement backend
+├── frontend/
+│   ├── src/
+│   │   ├── App.tsx          # Interface principale
+│   │   ├── App.css          # Styles
+│   │   └── ...
+│   ├── package.json         # Dépendances Node.js
+│   └── ...
+├── start_app.sh             # Lancement global
+└── README.md                # Documentation
+```
+
+## 🔍 Utilisation
+
+1. **Démarrer l'application** avec `./start_app.sh`
+2. **Ouvrir** http://localhost:3000 dans votre navigateur
+3. **Choisir une voix** parmi les 6 disponibles
+4. **Glisser-déposer** ou sélectionner votre fichier PDF
+5. **Cliquer** sur "Convertir en audio"
+6. **Écouter** le résultat avec le lecteur intégré
+7. **Télécharger** l'audio si souhaité
+
+## 🐛 Dépannage
+
+### Erreur "Fichier audio non trouvé"
+- Vérifiez que le backend est démarré
+- Vérifiez la clé API OpenAI
+
+### Erreur CORS
+- Assurez-vous que le frontend est sur localhost:3000
+- Vérifiez la configuration CORS dans main.py
+
+### Erreur d'installation
+```bash
+# Si pip échoue
+pip3 install --break-system-packages -r requirements.txt
+
+# Si npm échoue
+cd frontend && npm install --legacy-peer-deps
+```
 
 ## 📄 Licence
 
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+Ce projet est sous licence MIT.
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-- Signaler des bugs
-- Proposer des améliorations
-- Soumettre des pull requests
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou proposer une pull request.
 
 ## 📞 Support
 
 Pour toute question ou problème, ouvrez une issue sur GitHub.
-
----
-
-**Fait avec ❤️ et IA**
