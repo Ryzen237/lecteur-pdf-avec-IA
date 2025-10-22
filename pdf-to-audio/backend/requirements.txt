@@ -1,0 +1,23 @@
+# Backend PDF-to-Audio Requirements
+
+# FastAPI et serveur
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Traitement PDF
+PyMuPDF==1.23.8
+
+# Text-to-Speech (installer au moins une de ces options)
+# Option 1: Edge TTS (Recommandé - Haute qualité, gratuit)
+edge-tts==6.1.9
+
+# Option 2: Google TTS (Bonne qualité, nécessite internet)
+gTTS==2.4.0
+
+# Option 3: pyttsx3 (Qualité basique, fonctionne hors ligne)
+pyttsx3==2.90
+
+# Utilitaires
+python-dotenv==1.0.0
+aiofiles==23.2.1
